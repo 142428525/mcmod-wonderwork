@@ -51,10 +51,6 @@ loom {
 			sourceSet sourceSets.client
 		}
 	}
-
-	interfaceInjection {
-		enableDependencyInterfaceInjection = true
-	}
 }
 
 dependencies {
