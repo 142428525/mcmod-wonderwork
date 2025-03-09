@@ -1,0 +1,7 @@
+{
+  "parent": "block/powder_snow",
+  "textures": {
+    "texture": "wonderwork:block/worm_block",
+    "particle": "#texture"
+  }
+}

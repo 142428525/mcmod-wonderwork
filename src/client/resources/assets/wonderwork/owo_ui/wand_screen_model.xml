@@ -1,0 +1,62 @@
+<owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.20/owo-ui.xsd">
+    <components>
+        <flow-layout direction="vertical">
+            <children>
+                <!-- wtf it is -->
+                <flow-layout direction="horizontal" id="main">
+                    <children>
+                        <grid-layout rows="3" columns="2" id="plugin">
+                            <children/>
+                        </grid-layout>
+
+                        <button id="test-button">
+                            <text>666</text>
+                            <sizing>
+                                <horizontal method="fixed">18</horizontal>
+                                <vertical method="fixed">18</vertical>
+                            </sizing>
+                        </button>
+
+                        <grid-layout rows="3" columns="3" id="cache">
+                            <children/>
+                        </grid-layout>
+
+                        <flow-layout direction="vertical">
+                            <children>
+                                <label id="test-text">
+                                    <color>dark-gray</color>
+                                    <sizing>
+                                        <horizontal method="fixed">50</horizontal>
+                                    </sizing>
+                                </label>
+                                <label>
+                                    <text>114514</text>
+                                    <color>dark-gray</color>
+                                    <sizing>
+                                        <horizontal method="fixed">50</horizontal>
+                                    </sizing>
+                                </label>
+                            </children>
+                            <padding>
+                                <horizontal>2</horizontal>
+                            </padding>
+                        </flow-layout>
+                    </children>
+
+                    <sizing>
+                        <horizontal method="fixed">176</horizontal>
+                        <vertical method="fixed">166</vertical>
+                    </sizing>
+
+                    <positioning type="absolute">0,0</positioning>
+
+                    <padding>
+                        <horizontal>7</horizontal>
+                        <vertical>16</vertical>
+                    </padding>
+                </flow-layout>
+            </children>
+        </flow-layout>
+    </components>
+</owo-ui>

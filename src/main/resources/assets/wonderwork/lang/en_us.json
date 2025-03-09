@@ -1,0 +1,31 @@
+{
+  "modmenu.summaryTranslation.wonderwork": "Mute ala li pona! The less is the better!",
+
+  "patchouli_books.wonderwork.thaumaturgy_intros.name": "Thaumaturgy Intros",
+  "patchouli_books.wonderwork.thaumaturgy_intros.subtitle": "Magic Usage 101",
+  "patchouli_books.wonderwork.thaumaturgy_intros.landing": "Testing texts.",
+
+  "itemGroup.joke_group": "I admire thaumaturges, and…",
+
+  "item.wonderwork.stone_ingot": "Stone Body Ingot",
+
+  "item.wonderwork.debug_wand": "Thaumaturgical Debug Wand",
+  "item.wonderwork.debug_wand.tooltip": "The Ability to Manipulate the Elan-Vital Energy",
+
+  "item.wonderwork.standard_wand": "Standard Thaumaturgy Wand",
+  "entity.wonderwork.magic_white_arrow": "White Arrow",
+  "sounds.wonderwork.magic.white_arrow.shoot": "White Arrow: Shoot",
+
+  "item.wonderwork.music_disk_kobe": "Hellish Music Disk",
+  "item.wonderwork.music_disk_kobe.desc": "Not C418 - 24",
+  "sounds.wonderwork.music_disk.c_u_again": "Salute the legend!",
+
+  "block.wonderwork.stone_block": "Stone Body Block",
+
+  "block.wonderwork.lava_block": "Lava Block",
+
+  "block.wonderwork.worm_block": "Worm Wall",
+  "sounds.wonderwork.block.worm_block.wriggle": "Worm Wall: Wriggle",
+  "effect.wonderwork.worm_winding": "Worm Winding",
+  "item.wonderwork.worm_bucket": "Worm Bucket"
+}

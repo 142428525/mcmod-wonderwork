@@ -1,0 +1,64 @@
+{
+  "music_disk.c_u_again": {
+    "subtitle": "sounds.wonderwork.music_disk.c_u_again",
+    "sounds": [
+      {
+        "name": "wonderwork:mamba_out",
+        "stream": true
+      }
+    ]
+  },
+  "block.worm_block.wriggle": {
+    "subtitle": "sounds.wonderwork.block.worm_block.wriggle",
+    "sounds": [
+      {
+        "name": "minecraft:block/honeyblock/slide1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:block/honeyblock/slide1",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:block/honeyblock/slide2",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:block/honeyblock/slide2",
+        "pitch": 0.8,
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:block/honeyblock/slide3",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:block/honeyblock/slide3",
+        "pitch": 0.8,
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:block/honeyblock/slide4",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:block/honeyblock/slide4",
+        "pitch": 0.8,
+        "volume": 0.8
+      }
+    ]
+  },
+  "entity.kobe.fly": {
+    "subtitle": "sounds.wonderwork.entity.kobe.fly",
+    "sounds": [
+      "wonderwork:helicopter"
+    ]
+  },
+  "magic.white_arrow.shoot": {
+    "subtitle": "sounds.wonderwork.magic.white_arrow.shoot",
+    "sounds": [
+      "wonderwork:white_arrow"
+    ]
+  }
+}

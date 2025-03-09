@@ -1,0 +1,8 @@
+{
+  "name": "patchouli_books.wonderwork.thaumaturgy_intros.name",
+  "landing_text": "patchouli_books.wonderwork.thaumaturgy_intros.landing",
+  "version": 0,
+  "subtitle": "patchouli_books.wonderwork.thaumaturgy_intros.subtitle",
+  "creative_tab": "wonderwork:joke_group",
+  "use_resource_pack": true
+}

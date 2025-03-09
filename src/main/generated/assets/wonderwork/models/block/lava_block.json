@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "wonderwork:block/lava_block_top",
+    "side": "wonderwork:block/lava_block_side"
+  }
+}

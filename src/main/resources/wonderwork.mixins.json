@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "kasisuno.wonderwork.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "PersistentDataMixin",
+    "StatusEffectInstanceMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

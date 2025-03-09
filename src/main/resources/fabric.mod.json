@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "wonderwork",
+  "version": "${version}",
+  "name": "Wonderwork",
+  "description": "\"Wonderwork\" is the Anglo localization of \"thaumaturgy\".",
+  "authors": [
+    "KasiSuno (Github Username: 142428525)"
+  ],
+  "contact": {
+    "homepage": "https://scp-wiki-cn.wikidot.com/site-514/",
+    "sources": "https://142428525.github.io/404/"
+  },
+  "license": "CC BY-NC-SA 4.0",
+  "icon": "assets/wonderwork/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "kasisuno.wonderwork.Wonderwork"
+    ],
+    "client": [
+      "kasisuno.wonderwork.WonderworkClient"
+    ],
+    "fabric-datagen": [
+      "kasisuno.wonderwork.WonderworkDataGenerator"
+    ],
+    "modmenu": [
+      "kasisuno.wonderwork.compat.modmenu.WonderworkModMenuApi"
+    ]
+  },
+  "mixins": [
+    "wonderwork.mixins.json",
+    {
+      "config": "wonderwork.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.2",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*",
+    "owo": "~0.11.2+1.20"
+  },
+  "recommends": {
+    "pathcouli": "~1.20.1-84-FABRIC"
+  },
+  "suggests": {
+    "modmenu": "~7.2.2"
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1657": ["kasisuno/wonderwork/entity/trivial/IModPersistentData"]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "modmenu.nameTranslation.wonderwork": "奇术",
+  "modmenu.descriptionTranslation.wonderwork": "Wonderwork是Thaumaturgy的盎格鲁词根版本。两者都意为「奇术」。",
+  "modmenu.summaryTranslation.wonderwork": "Mute ala li pona! 少即是美！",
+
+  "patchouli_books.wonderwork.thaumaturgy_intros.name": "奇术导论",
+  "patchouli_books.wonderwork.thaumaturgy_intros.subtitle": "魔法使用101",
+  "patchouli_books.wonderwork.thaumaturgy_intros.landing": "测试测试测试测试测试！",
+
+  "itemGroup.joke_group": "憧憬成为……奇术师！",
+
+  "item.wonderwork.stone_ingot": "石块锭",
+
+  "item.wonderwork.debug_wand": "奇术调试杖",
+  "item.wonderwork.debug_wand.tooltip": "操纵EVE程度的能力",
+
+  "item.wonderwork.standard_wand": "标准奇术杖",
+  "entity.wonderwork.magic_white_arrow": "纯白之箭",
+  "sounds.wonderwork.magic.white_arrow.shoot": "纯白之箭：发射",
+
+  "item.wonderwork.music_disk_kobe": "阴乐唱片",
+  "item.wonderwork.music_disk_kobe.desc": "并非C418 - 24",
+  "sounds.wonderwork.music_disk.c_u_again": "致敬传奇！",
+
+  "block.wonderwork.stone_block": "石块块",
+
+  "block.wonderwork.lava_block": "熔岩块",
+
+  "block.wonderwork.worm_block": "虫墙",
+  "sounds.wonderwork.block.worm_block.wriggle": "虫墙：蠕动",
+  "effect.wonderwork.worm_winding": "虫缚",
+  "item.wonderwork.worm_bucket": "虫桶"
+}
