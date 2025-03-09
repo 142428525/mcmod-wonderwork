@@ -9,7 +9,7 @@
   ],
   "contact": {
     "homepage": "https://scp-wiki-cn.wikidot.com/site-514/",
-    "sources": "https://142428525.github.io/404/"
+    "sources": "https://github.com/142428525/mcmod-wonderwork"
   },
   "license": "CC BY-NC-SA 4.0",
   "icon": "assets/wonderwork/icon.png",
@@ -50,7 +50,7 @@
   },
   "custom": {
     "loom:injected_interfaces": {
-      "net/minecraft/class_1657": ["kasisuno/wonderwork/entity/trivial/IModPersistentData"]
+      "net/minecraft/class_1309": ["kasisuno/wonderwork/entity/trivial/IModPersistentData"]
     }
   }
 }
