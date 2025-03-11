@@ -6,6 +6,6 @@ public interface IModPersistentData
 {
 	default NbtCompound getPersistentData()
 	{
-		throw new IllegalStateException("This method is implemented in \"ManaManagerMixin.class\".");
+		throw new IllegalStateException("This method is implemented in a mixin class.");
 	}
 }
