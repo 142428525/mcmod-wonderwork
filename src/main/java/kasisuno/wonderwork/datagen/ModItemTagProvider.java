@@ -25,7 +25,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
 		getOrCreateTagBuilder(ItemTags.MUSIC_DISCS)
 				.add(ModItems.MUSIC_DISK_KOBE);
 		
-		getOrCreateTagBuilder(ModTags.Items.WAND_CACHES)
+		getOrCreateTagBuilder(ModTags.Item.WAND_CACHES)
 				.add(Items.ENCHANTED_GOLDEN_APPLE)
 				.add(new Identifier(PatchouliAPI.MOD_ID, "guide_book"));	//fixme: hard-coded!!!
 	}

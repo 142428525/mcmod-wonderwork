@@ -18,7 +18,7 @@ public class ModEntityTagProvider extends FabricTagProvider.EntityTypeTagProvide
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup arg)
 	{
-		getOrCreateTagBuilder(ModTags.Entities.MANA_USABLE)
+		getOrCreateTagBuilder(ModTags.Entity.MANA_USABLE)
 				.add(EntityType.PLAYER);
 	}
 }

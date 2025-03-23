@@ -46,7 +46,7 @@ public class WandScreenHandler extends ScreenHandler
 				.playerInventory(playerInventory)
 				.moveTo(62, 17)
 				.slotFactory((inventoryX, index, x, y) -> new ValidatingSlot(inventoryX, index, x, y,
-						itemStack -> itemStack.isIn(ModTags.Items.WAND_CACHES)))
+						itemStack -> itemStack.isIn(ModTags.Item.WAND_CACHES)))
 				.grid(this.inventory, 0, WandInventory.COL, WandInventory.ROW);
 		//if slots would be added, remember SIZE is INDEX_END
 	}

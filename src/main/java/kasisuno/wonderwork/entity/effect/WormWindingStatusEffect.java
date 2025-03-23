@@ -96,7 +96,7 @@ public class WormWindingStatusEffect extends StatusEffect
 			}
 		}*/
 		
-		if (entity.getType().isIn(ModTags.Entities.MANA_USABLE))
+		if (entity.getType().isIn(ModTags.Entity.MANA_USABLE))
 		{
 			ManaManager.changeMana(entity, -1);
 		}
