@@ -2,7 +2,7 @@ package kasisuno.wonderwork.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import kasisuno.wonderwork.entity.trivial.ManaManager;
+import kasisuno.wonderwork.entity.trivial.ManaNbtManager;
 import kasisuno.wonderwork.entity.projectile.MagicWhiteArrowEntity;
 import kasisuno.wonderwork.inventory.WandInventory;
 import kasisuno.wonderwork.screen.WandScreenHandler;
@@ -89,14 +89,14 @@ public class WandItem extends Item
 				stack.getNbt().putFloat("CustomModelData", 0);
 			}
 			
-			if (ManaManager.readMana(user) == ManaManager.INVALID)
+			if (ManaNbtManager.readMana(user) == ManaNbtManager.INVALID)
 			{
-				ManaManager.writeMana(user, 20);
+				ManaNbtManager.writeMana(user, 20);
 			}
 			
-			if (ManaManager.readMana(user) == 0)
+			if (ManaNbtManager.readMana(user) == 0)
 			{
-				ManaManager.writeMana(user, 20);
+				ManaNbtManager.writeMana(user, 20);
 				user.sendMessage(Text.literal("csndm"), true);
 			}
 		}
@@ -136,8 +136,8 @@ public class WandItem extends Item
 				
 				stack.getNbt().putFloat("CustomModelData", 0);
 				
-				ManaManager.writeMana(player, ManaManager.readMana(player) >= 5 ?
-						ManaManager.readMana(player) - 5 : 0);
+				ManaNbtManager.writeMana(player, ManaNbtManager.readMana(player) >= 5 ?
+						ManaNbtManager.readMana(player) - 5 : 0);
 			}
 			
 			world.playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -177,8 +177,8 @@ public class WandItem extends Item
 						tnt.setVelocity(player.getRotationVector().normalize().multiply(3));
 						world.spawnEntity(tnt);
 						
-						ManaManager.writeMana(player, ManaManager.readMana(player) >= 10 ?
-								ManaManager.readMana(player) - 10 : 0);
+						ManaNbtManager.writeMana(player, ManaNbtManager.readMana(player) >= 10 ?
+								ManaNbtManager.readMana(player) - 10 : 0);
 					}
 				}
 				

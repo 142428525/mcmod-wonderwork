@@ -27,6 +27,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
 		
 		getOrCreateTagBuilder(ModTags.Item.WAND_CACHES)
 				.add(Items.ENCHANTED_GOLDEN_APPLE)
-				.add(new Identifier(PatchouliAPI.MOD_ID, "guide_book"));	//xxx: hard-coded!!!
+				.add(new Identifier(PatchouliAPI.MOD_ID, "guide_book"));	// XXX: hard-coded!!!
 	}
 }

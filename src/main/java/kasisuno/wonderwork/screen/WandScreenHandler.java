@@ -4,7 +4,7 @@ import io.wispforest.owo.client.screens.ScreenUtils;
 import io.wispforest.owo.client.screens.SlotGenerator;
 import io.wispforest.owo.client.screens.SyncedProperty;
 import io.wispforest.owo.client.screens.ValidatingSlot;
-import kasisuno.wonderwork.entity.trivial.ManaManager;
+import kasisuno.wonderwork.entity.trivial.ManaNbtManager;
 import kasisuno.wonderwork.inventory.WandInventory;
 import kasisuno.wonderwork.screen.trivial.ModScreenHandlerTypes;
 import kasisuno.wonderwork.util.ModTags;
@@ -33,11 +33,11 @@ public class WandScreenHandler extends ScreenHandler
 		// 玩家开启时，一些物品栏有自定义的逻辑。
 		inventory.onOpen(playerInventory.player);
 		
-		property = createProperty(Integer.class, ManaManager.INVALID);
+		property = createProperty(Integer.class, ManaNbtManager.INVALID);
 		property.observe(this::sync_int);
 		if (playerInventory.player instanceof ServerPlayerEntity)
 		{
-			property.set(ManaManager.readMana(playerInventory.player));
+			property.set(ManaNbtManager.readMana(playerInventory.player));
 			property.markDirty();
 		}
 		

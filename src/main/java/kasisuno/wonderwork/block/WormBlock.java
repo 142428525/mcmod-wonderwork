@@ -1,21 +1,18 @@
 package kasisuno.wonderwork.block;
 
 import kasisuno.wonderwork.block.trivial.ModBlocks;
+import kasisuno.wonderwork.entity.effect.WormWindingNbtHelper;
 import kasisuno.wonderwork.entity.effect.WormWindingStatusEffectInstance;
 import kasisuno.wonderwork.entity.effect.trivial.ModStatusEffects;
-import kasisuno.wonderwork.entity.trivial.PersistentDataHelper;
 import kasisuno.wonderwork.sounds.ModSounds;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
@@ -33,14 +30,55 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldEvents;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 public class WormBlock extends Block implements FluidDrainable
 {
-	public static final int FADE_IN_TICKS = 50;    //in ticks
-	public static final int FADE_OUT_TICKS = 50;    //in ticks
+	//public static final int FADE_IN_TICKS = 50;
+	public static final int FADE_OUT_TICKS = 50;
 	private static final VoxelShape FALLING_SHAPE =
 			VoxelShapes.cuboid(0, 0, 0, 1, 0.9, 1);
+	
+	private static final HashSet<LivingEntity> colliding_entities = new HashSet<>();
+	
+	static
+	{
+		ServerTickEvents.START_SERVER_TICK.register(server ->
+				colliding_entities.forEach(entity ->
+						WormWindingNbtHelper.setCollisionCount(entity, 0)));
+		
+		ServerTickEvents.END_SERVER_TICK.register(server ->
+		{
+			colliding_entities.forEach(entity ->
+			{
+				if (WormWindingNbtHelper.getCollisionCount(entity) == 0)
+				{
+					// has left the block
+					
+					if (entity.hasStatusEffect(ModStatusEffects.WORM_WINDING))
+					{
+						entity.removeStatusEffect(ModStatusEffects.WORM_WINDING);
+						entity.addStatusEffect(new WormWindingStatusEffectInstance(
+								entity.getWorld().getDifficulty().ordinal(),
+								FADE_OUT_TICKS));
+					}
+				}
+				// hasn't left the block
+				else if (!(entity.hasStatusEffect(ModStatusEffects.WORM_WINDING) &&
+						entity.getStatusEffect(ModStatusEffects.WORM_WINDING).isInfinite()))
+				{
+					// & hasn't got inf wwsei
+					
+					entity.addStatusEffect(new WormWindingStatusEffectInstance(
+							entity.getWorld().getDifficulty().ordinal()));
+				}
+			});
+			
+			colliding_entities.removeIf(entity ->
+					WormWindingNbtHelper.getCollisionCount(entity) == 0);
+		});
+	}
 	
 	public WormBlock(Settings settings)
 	{
@@ -83,37 +121,40 @@ public class WormBlock extends Block implements FluidDrainable
 			{
 				//worm winding logic's here
 				
-				if (!livingEntity.hasStatusEffect(ModStatusEffects.WORM_WINDING))
-				{
-					livingEntity.addStatusEffect(new WormWindingStatusEffectInstance(world.getDifficulty().ordinal()));
-					
-					if (livingEntity instanceof PlayerEntity player)
-					{
-						WormWindingHelper.setFadeInTicks(player, 0);
-						WormWindingHelper.setRemainingTicks(player, FADE_OUT_TICKS);
-					}
-				}
-				else if (livingEntity instanceof PlayerEntity player)	//has already had the effect
-				{
-					if (WormWindingHelper.getRemainingTicks(player) != FADE_OUT_TICKS)
-					{
-						int tmp = WormWindingHelper.getFadeInTicks(player);
-						WormWindingHelper.setRemainingTicks(player,
-								(tmp - tmp / FADE_OUT_TICKS) % FADE_OUT_TICKS + 1);
-					}
-					
-					WormWindingHelper.setFadeInTicks(player, WormWindingHelper.getFadeInTicks(player) + 1);
-				}
+				colliding_entities.add(livingEntity);
+				WormWindingNbtHelper.mapCollisionCount(livingEntity, val -> val + 1);
 				
-				if (world.getBlockState(BlockPos.ofFloored(pos.getX(), entity.getEyeY(), pos.getZ())).isOf(this))
-				{
-					livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS,
-							StatusEffectInstance.INFINITE));
-				}
-				else
-				{
-					livingEntity.removeStatusEffect(StatusEffects.BLINDNESS);
-				}
+//				if (!entity.hasStatusEffect(ModStatusEffects.WORM_WINDING))
+//				{
+//					entity.addStatusEffect(new WormWindingStatusEffectInstance(world.getDifficulty().ordinal()));
+//
+//					if (entity instanceof PlayerEntity player)
+//					{
+//						WormWindingNbtHelper.setFadeInTicks(player, 0);
+//						WormWindingNbtHelper.setRemainingTicks(player, FADE_OUT_TICKS);
+//					}
+//				}
+//				else if (entity instanceof PlayerEntity player)	//has already had the effect
+//				{
+//					if (WormWindingNbtHelper.getRemainingTicks(player) != FADE_OUT_TICKS)
+//					{
+//						int tmp = WormWindingNbtHelper.getFadeInTicks(player);
+//						WormWindingNbtHelper.setRemainingTicks(player,
+//								(tmp - tmp / FADE_OUT_TICKS) % FADE_OUT_TICKS + 1);
+//					}
+//
+//					WormWindingNbtHelper.setFadeInTicks(player, WormWindingNbtHelper.getFadeInTicks(player) + 1);
+//				}
+//
+//				if (world.getBlockState(BlockPos.ofFloored(pos.getX(), entity.getEyeY(), pos.getZ())).isOf(this))
+//				{
+//					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS,
+//							StatusEffectInstance.INFINITE));
+//				}
+//				else
+//				{
+//					entity.removeStatusEffect(StatusEffects.BLINDNESS);
+//				}
 			}
 		}
 
@@ -243,35 +284,5 @@ public class WormBlock extends Block implements FluidDrainable
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type)
 	{
 		return false;
-	}
-	
-	public static class WormWindingHelper
-	{
-		//public static final int FADED = -1;
-		public static final String KEY = "WormWinding";
-		
-		public static void setFadeInTicks(PlayerEntity player, int fadeInTicks)
-		{
-			NbtCompound data = PersistentDataHelper.getData(player, KEY);
-			data.putInt("fadeInTicks", fadeInTicks);
-			PersistentDataHelper.setData(player, KEY, data);
-		}
-		
-		public static void setRemainingTicks(PlayerEntity player, int remainingTicks)
-		{
-			NbtCompound data = PersistentDataHelper.getData(player, KEY);
-			data.putInt("remainingTicks", remainingTicks);
-			PersistentDataHelper.setData(player, KEY, data);
-		}
-		
-		public static int getFadeInTicks(PlayerEntity player)
-		{
-			return PersistentDataHelper.getData(player, KEY).getInt("fadeInTicks");
-		}
-		
-		public static int getRemainingTicks(PlayerEntity player)
-		{
-			return PersistentDataHelper.getData(player, KEY).getInt("remainingTicks");
-		}
 	}
 }

@@ -9,7 +9,7 @@ import io.wispforest.owo.ui.container.GridLayout;
 import io.wispforest.owo.ui.core.Insets;
 import io.wispforest.owo.ui.event.WindowResizeCallback;
 import kasisuno.wonderwork.Wonderwork;
-import kasisuno.wonderwork.entity.trivial.ManaManager;
+import kasisuno.wonderwork.entity.trivial.ManaNbtManager;
 import kasisuno.wonderwork.inventory.WandInventory;
 import kasisuno.wonderwork.screen.WandScreenHandler;
 import net.fabricmc.api.EnvType;
@@ -74,7 +74,7 @@ public class WandScreen extends BaseUIModelHandledScreen<FlowLayout, WandScreenH
 		super.render(vanillaContext, mouseX, mouseY, delta);
 		
 		component(LabelComponent.class, "test-text")
-				.text(Text.literal("Mana: " + (getScreenHandler().getSyncedInt() == ManaManager.INVALID ?
+				.text(Text.literal("Mana: " + (getScreenHandler().getSyncedInt() == ManaNbtManager.INVALID ?
 						"INVALID" : getScreenHandler().getSyncedInt())));	//虽然不知道为什么但是放在这里就行
 	}
 	
