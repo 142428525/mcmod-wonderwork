@@ -89,6 +89,7 @@ public class WandItem extends Item
 				stack.getNbt().putFloat("CustomModelData", 0);
 			}
 			
+			//
 			if (ManaNbtManager.readMana(user) == ManaNbtManager.INVALID)
 			{
 				ManaNbtManager.writeMana(user, 20);
@@ -99,6 +100,7 @@ public class WandItem extends Item
 				ManaNbtManager.writeMana(user, 20);
 				user.sendMessage(Text.literal("csndm"), true);
 			}
+			//
 		}
 		
 		return TypedActionResult.consume(stack);
@@ -109,6 +111,13 @@ public class WandItem extends Item
 	{
 		float p = get_charging_progress(getMaxUseTime(stack) - remainingUseTicks);
 		
+		if (!stack.hasNbt())
+		{
+			NbtCompound nbt = new NbtCompound();
+			nbt.putFloat("CustomModelData", 0);
+			stack.setNbt(nbt);
+		}
+		
 		stack.getNbt().putFloat("CustomModelData", Math.round(p * 5));    //not null
 	}
 	
@@ -117,13 +126,17 @@ public class WandItem extends Item
 	{
 		if (user instanceof PlayerEntity player)
 		{
+			if (is_low_mana(player, 5))
+			{
+				return;
+			}
+			
 			int use_ticks = getMaxUseTime(stack) - remainingUseTicks;
 			
 			//
 			//player.sendMessage(Text.literal("wand: on_stopped_using " + use_ticks), true);
 			
-			float p = get_charging_progress(use_ticks);
-			//p must be in [0,1]
+			float p = get_charging_progress(use_ticks);	//p must be in [0,1]
 			
 			if (!world.isClient)
 			{
@@ -136,8 +149,7 @@ public class WandItem extends Item
 				
 				stack.getNbt().putFloat("CustomModelData", 0);
 				
-				ManaNbtManager.writeMana(player, ManaNbtManager.readMana(player) >= 5 ?
-						ManaNbtManager.readMana(player) - 5 : 0);
+				ManaNbtManager.mapMana(player, val -> val - 5);
 			}
 			
 			world.playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -151,6 +163,11 @@ public class WandItem extends Item
 	{
 		if (user instanceof PlayerEntity player)
 		{
+			if (is_low_mana(player, 10))
+			{
+				return stack;
+			}
+			
 			//
 			//player.sendMessage(Text.literal("wand: finish_using"), true);
 			
@@ -177,12 +194,12 @@ public class WandItem extends Item
 						tnt.setVelocity(player.getRotationVector().normalize().multiply(3));
 						world.spawnEntity(tnt);
 						
-						ManaNbtManager.writeMana(player, ManaNbtManager.readMana(player) >= 10 ?
-								ManaNbtManager.readMana(player) - 10 : 0);
+						ManaNbtManager.mapMana(player, val -> val - 10);
 					}
+					
+					player.getItemCooldownManager().set(this, 50);
 				}
 				
-				player.getItemCooldownManager().set(this, 50);
 				stack.getNbt().putFloat("CustomModelData", 0);
 			}
 		}
@@ -206,5 +223,10 @@ public class WandItem extends Item
 	{
 		double g = (double)use_ticks / 20;    //max charging time = 1s
 		return g < 1 ? (float)(Math.pow(g - 1, 3) + 1) : 1;
+	}
+	
+	private boolean is_low_mana(PlayerEntity player, int target_amount)
+	{
+			return ManaNbtManager.readMana(player) < target_amount;
 	}
 }
