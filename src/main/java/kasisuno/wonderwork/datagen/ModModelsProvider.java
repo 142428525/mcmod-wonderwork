@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
-import net.minecraft.data.client.TexturedModel;
 
 public class ModModelsProvider extends FabricModelProvider
 {
@@ -20,7 +19,7 @@ public class ModModelsProvider extends FabricModelProvider
 	public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator)
 	{
 		blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STONE_BLOCK);
-		blockStateModelGenerator.registerSingleton(ModBlocks.LAVA_BLOCK, TexturedModel.CUBE_COLUMN);
+		blockStateModelGenerator.registerSimpleState(ModBlocks.LAVA_BLOCK);	// NOTE: its block model is written manually, in order to use lava's textures
 		blockStateModelGenerator.registerSimpleState(ModBlocks.WORM_BLOCK);	// NOTE: its block model is written manually, in order to derivate from powder snow
 	}
 	
