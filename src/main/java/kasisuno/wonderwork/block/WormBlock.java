@@ -58,6 +58,7 @@ public class WormBlock extends Block implements FluidDrainable
 					
 					if (entity.hasStatusEffect(ModStatusEffects.WORM_WINDING))
 					{
+						WormWindingNbtHelper.setDoSkipEffectRemoveOnce(entity, true);
 						entity.removeStatusEffect(ModStatusEffects.WORM_WINDING);
 						entity.addStatusEffect(new WormWindingStatusEffectInstance(
 								entity.getWorld().getDifficulty().ordinal(),
@@ -70,6 +71,8 @@ public class WormBlock extends Block implements FluidDrainable
 				{
 					// & hasn't got inf wwsei
 					
+					// upgrade it to inf
+					WormWindingNbtHelper.setDoSkipEffectRemoveOnce(entity, true);
 					entity.addStatusEffect(new WormWindingStatusEffectInstance(
 							entity.getWorld().getDifficulty().ordinal()));
 				}

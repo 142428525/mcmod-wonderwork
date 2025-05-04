@@ -12,6 +12,8 @@ public class WormWindingNbtHelper
 	private static final String MAIN_KEY = "WormWinding";
 	private static final String COLLISION_COUNT = "CollisionCount";
 	private static final String PLAYER_OVERLAY_PROGRESS = "PlayerOverlayProgress";
+	private static final String EFFECT_DURATION = "EffectDuration";
+	private static final String DO_SKIP_EFFECT_REMOVE_ONCE = "DoSkipEffectRemoveOnce";
 	
 	// collision count
 	public static int getCollisionCount(LivingEntity entity)
@@ -47,5 +49,36 @@ public class WormWindingNbtHelper
 	public static void mapPlayerOverlayProgress(PlayerEntity entity, Int2IntFunction f)
 	{
 		setPlayerOverlayProgress(entity, f.applyAsInt(getPlayerOverlayProgress(entity)));
+	}
+	
+	// effect duration
+	public static int getEffectDuration(LivingEntity entity)
+	{
+		return PersistentDataHelper.getData(entity, MAIN_KEY).getInt(EFFECT_DURATION);
+	}
+	
+	public static void setEffectDuration(LivingEntity entity, int value)
+	{
+		NbtCompound data = PersistentDataHelper.getData(entity, MAIN_KEY);
+		data.putInt(EFFECT_DURATION, value);
+		PersistentDataHelper.setData(entity, MAIN_KEY, data);
+	}
+	
+	public static void mapEffectDuration(LivingEntity entity, Int2IntFunction f)
+	{
+		setEffectDuration(entity, f.applyAsInt(getEffectDuration(entity)));
+	}
+	
+	// is effect duration protected
+	public static boolean getDoSkipEffectRemoveOnce(LivingEntity entity)
+	{
+		return PersistentDataHelper.getData(entity, MAIN_KEY).getBoolean(DO_SKIP_EFFECT_REMOVE_ONCE);
+	}
+	
+	public static void setDoSkipEffectRemoveOnce(LivingEntity entity, boolean value)
+	{
+		NbtCompound data = PersistentDataHelper.getData(entity, MAIN_KEY);
+		data.putBoolean(DO_SKIP_EFFECT_REMOVE_ONCE, value);
+		PersistentDataHelper.setData(entity, MAIN_KEY, data);
 	}
 }

@@ -5,7 +5,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 
@@ -19,9 +18,7 @@ public class WormWindingStatusEffect extends StatusEffect
 	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier)
 	{
-		//int i = 25 >> amplifier;	//25 = 0b11001, 0b1100 = 12, 0b110 = 6, 0b11 = 3
-		
-		return true;	// to ensure visual effect updates every frame
+		return true;    // to ensure those logics update every frame
 	}
 	
 	@Override
@@ -32,21 +29,22 @@ public class WormWindingStatusEffect extends StatusEffect
 			ManaNbtManager.mapMana(entity, val -> val - 1);
 		}
 		
-		entity.damage(entity.getDamageSources().cramming(), 1 + MathHelper.sqrt(amplifier) / 2);
+		entity.damage(entity.getDamageSources().cramming(),
+				1 + MathHelper.sqrt(Math.max(amplifier - 1, 0)) / 2);
 	}
 	
 	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier)
 	{
-		if (!entity.getWorld().isClient)	// in server world
+		if (!entity.getWorld().isClient)    // in server world
 		{
-			if (entity instanceof PlayerEntity player)
+			if (WormWindingNbtHelper.getDoSkipEffectRemoveOnce(entity))
 			{
-				//WormWindingNbtHelper.setPlayerOverlayProgress(player, 0);
-				
-				
-				
-				// ?
+				WormWindingNbtHelper.setDoSkipEffectRemoveOnce(entity, false);
+			}
+			else
+			{
+				WormWindingNbtHelper.setEffectDuration(entity, 0);
 			}
 		}
 		
@@ -58,12 +56,12 @@ public class WormWindingStatusEffect extends StatusEffect
 	 */
 	public static boolean isCoolingDown(int duration, int amplifier)
 	{
-		int i = getCoolDown(amplifier);    //25, 20, 18, 17, 17, ...
+		int i = getCoolDown(amplifier);    //50, 40, 36, 35
 		return i <= 0 || duration % i == 0;
 	}
 	
 	public static int getCoolDown(int amplifier)
 	{
-		return 15 + 10 / (amplifier + 1);
+		return 25 + 25 / (amplifier + 1);
 	}
 }
