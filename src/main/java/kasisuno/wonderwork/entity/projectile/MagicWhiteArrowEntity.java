@@ -52,10 +52,10 @@ public class MagicWhiteArrowEntity extends PersistentProjectileEntity
 				discard_with_boom();
 			}
 			
-			//显示不准确=不显示
+			// 显示不准确不如不显示
 //			if (getOwner() instanceof PlayerEntity player)
 //			{
-//				player.sendMessage(Text.translatable(getType().getTranslationKey() + ".iframe_tip")
+//				player.sendMessage(Text.translatable(getType().getTranslationKey() + ".iframe_tip")	// 无敌帧提示
 //						.formatted(Formatting.RED, Formatting.ITALIC), true);
 //			}
 		}
@@ -69,7 +69,7 @@ public class MagicWhiteArrowEntity extends PersistentProjectileEntity
 		if (isOnFire())
 		{
 			extinguish();
-			//magic doesn't interact with physical fire :)
+			// magic doesn't interact with physical fire :)
 		}
 		
 		if (getVelocity().length() < 1E-3 && !getWorld().isClient)
@@ -144,8 +144,6 @@ public class MagicWhiteArrowEntity extends PersistentProjectileEntity
 		
 		if (status == EntityStatuses.EXPLODE_FIREWORK_CLIENT && getWorld().isClient)
 		{
-			//nbt = {Explosions:[{Colors:[I; 0x66ccff]}]}
-			
 			NbtCompound nbt = new NbtCompound();
 			NbtList explosions = new NbtList();
 			NbtCompound explosion = new NbtCompound();
@@ -153,8 +151,9 @@ public class MagicWhiteArrowEntity extends PersistentProjectileEntity
 			explosions.add(explosion);
 			nbt.put("Explosions", explosions);
 			
-			var v = getVelocity();
+			// nbt = {Explosions:[{Colors:[I; 0x66ccff]}]}
 			
+			var v = getVelocity();
 			getWorld().addFireworkParticle(getX(), getY(), getZ(), v.x, v.y, v.z, nbt);
 		}
 	}
