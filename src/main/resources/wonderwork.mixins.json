@@ -3,6 +3,7 @@
   "package": "kasisuno.wonderwork.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "FluidFlowMixin",
     "PersistentDataMixin",
     "StatusEffectInstanceMixin"
   ],

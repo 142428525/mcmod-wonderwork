@@ -21,7 +21,7 @@ public class ModModelsProvider extends FabricModelProvider
 	{
 		blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STONE_BLOCK);
 		blockStateModelGenerator.registerSingleton(ModBlocks.LAVA_BLOCK, TexturedModel.CUBE_COLUMN);
-		blockStateModelGenerator.registerSimpleState(ModBlocks.WORM_BLOCK);	//block model is written manually
+		blockStateModelGenerator.registerSimpleState(ModBlocks.WORM_BLOCK);	// NOTE: its block model is written manually, in order to derivate from powder snow
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class ModModelsProvider extends FabricModelProvider
 	{
 		itemModelGenerator.register(ModItems.STONE_INGOT, Models.GENERATED);
 		itemModelGenerator.register(ModItems.DEBUG_WAND, Models.HANDHELD_ROD);
-		//itemModelGenerator.register(ModItems.STD_WAND, Models.HANDHELD_ROD);
+		//itemModelGenerator.register(ModItems.STD_WAND, Models.HANDHELD_ROD);	// NOTE: written manually & fabulously
 		itemModelGenerator.register(ModItems.MUSIC_DISK_KOBE, Models.GENERATED);
 		
 		//special block item

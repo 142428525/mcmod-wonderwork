@@ -12,32 +12,6 @@ public class WormWindingNbtHelper
 	private static final String MAIN_KEY = "WormWinding";
 	private static final String COLLISION_COUNT = "CollisionCount";
 	private static final String PLAYER_OVERLAY_PROGRESS = "PlayerOverlayProgress";
-		
-		/*
-		public static void setFadeInTicks(PlayerEntity player, int fadeInTicks)
-		{
-			NbtCompound data = PersistentDataHelper.getData(player, MAIN_KEY);
-			data.putInt("fadeInTicks", fadeInTicks);
-			PersistentDataHelper.setData(player, MAIN_KEY, data);
-		}
-		
-		public static void setRemainingTicks(PlayerEntity player, int remainingTicks)
-		{
-			NbtCompound data = PersistentDataHelper.getData(player, MAIN_KEY);
-			data.putInt("remainingTicks", remainingTicks);
-			PersistentDataHelper.setData(player, MAIN_KEY, data);
-		}
-		
-		public static int getFadeInTicks(PlayerEntity player)
-		{
-			return PersistentDataHelper.getData(player, MAIN_KEY).getInt("fadeInTicks");
-		}
-		
-		public static int getRemainingTicks(PlayerEntity player)
-		{
-			return PersistentDataHelper.getData(player, MAIN_KEY).getInt("remainingTicks");
-		}
-		*/
 	
 	// collision count
 	public static int getCollisionCount(LivingEntity entity)

@@ -42,7 +42,11 @@ public class WormWindingStatusEffect extends StatusEffect
 		{
 			if (entity instanceof PlayerEntity player)
 			{
-				WormWindingNbtHelper.setPlayerOverlayProgress(player, 0);
+				//WormWindingNbtHelper.setPlayerOverlayProgress(player, 0);
+				
+				
+				
+				// ?
 			}
 		}
 		

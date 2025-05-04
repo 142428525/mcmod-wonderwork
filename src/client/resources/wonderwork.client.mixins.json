@@ -1,11 +1,13 @@
 {
-	"required": true,
-	"package": "kasisuno.wonderwork.mixin.client",
-	"compatibilityLevel": "JAVA_17",
-	"client": [
-		"ChargingFOVClientMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "kasisuno.wonderwork.mixin.client",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "CameraFogClientMixin",
+    "ChargingFOVClientMixin",
+    "HudOverlayClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
